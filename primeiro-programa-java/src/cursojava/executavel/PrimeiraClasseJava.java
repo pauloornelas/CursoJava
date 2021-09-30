@@ -7,36 +7,28 @@ public class PrimeiraClasseJava {
 	/* Main é um método auto executável em Java */
 	public static void main(String[] args) {
 
-		String carros = JOptionPane.showInputDialog("Informe a quantidade de carros.");
-		String pessoas = JOptionPane.showInputDialog("Informe a quantidade de pessoas.");
+		String stringNota1 = JOptionPane.showInputDialog(null, "Informe a nota 1.");
+		String stringNota2 = JOptionPane.showInputDialog(null, "Informe a nota 2.");
+		String stringNota3 = JOptionPane.showInputDialog(null, "Informe a nota 3.");
+		String stringNota4 = JOptionPane.showInputDialog(null, "Informe a nota 4.");
 
-		double numCarros = Double.parseDouble(carros);
-		double numPessoas = Double.parseDouble(pessoas);
-
-		int divisao = (int) (numCarros / numPessoas);
-
-		int resto = (int) (numCarros % numPessoas);
-		String texto;
+		double nota1 = Double.parseDouble(stringNota1);
+		double nota2 = Double.parseDouble(stringNota2);
+		double nota3 = Double.parseDouble(stringNota3);
+		double nota4 = Double.parseDouble(stringNota4);
 		
-		int confirm = JOptionPane.showConfirmDialog(null, "Deseja ver quantos carros deram por pessoa?");
-		if (confirm == 0) {
-			if (divisao > 1) {
-				texto = "Ficaram " + divisao + " carros por pessoa.";
-			} else {
-				texto = "Ficou " + divisao + " carro por pessoa.";
-			}
-			JOptionPane.showMessageDialog(null, texto);
-		}
+		double media = (nota1 + nota2 + nota3 + nota4)/4;
 		
-		confirm = JOptionPane.showConfirmDialog(null, "Deseja ver quantos carros sobraram?");
-		if (confirm == 0) {
-			if (resto > 1) {
-				texto = "Sobraram " + resto + " carros.";
-			} else {
-				texto = "Sobrou " + resto + " carro.";
+		if(media >= 50) {
+			if(media >= 70) {
+				JOptionPane.showMessageDialog(null, "Aluno aprovado com média " + media);
+			}else {
+				JOptionPane.showMessageDialog(null, "Aluno em recuperação com média " + media);
 			}
-			JOptionPane.showMessageDialog(null, texto);
+		}else {
+			JOptionPane.showMessageDialog(null, "Aluno reprovado com média " + media);
 		}
+
 	}
 
 }
