@@ -1,30 +1,42 @@
 package cursojava.executavel;
 
+import javax.swing.JOptionPane;
+
 public class PrimeiraClasseJava {
 
 	/* Main é um método auto executável em Java */
 	public static void main(String[] args) {
 
-		double nota1 = 90;
-		double nota2 = 10;
-		double nota3 = 30;
-		double nota4 = 20;
+		String carros = JOptionPane.showInputDialog("Informe a quantidade de carros.");
+		String pessoas = JOptionPane.showInputDialog("Informe a quantidade de pessoas.");
 
-		double mediaNota = (nota1 + nota2 + nota3 + nota4) / 4;
+		double numCarros = Double.parseDouble(carros);
+		double numPessoas = Double.parseDouble(pessoas);
 
-		/* Condições lógicas com IF e ELSE */
-		if (mediaNota >= 70) {
-			System.out.println("Aluno aprovado " + mediaNota);
-		} else if (mediaNota >= 40) {
-			System.out.println("Aluno de recuperação " + mediaNota);
-		} else {
-			System.out.println("Aluno reprovado " + mediaNota);
-		}
+		int divisao = (int) (numCarros / numPessoas);
 
-		/* Operações ternárias são para micro validações */
-		String saidaResultado = mediaNota >= 70 ? "Aluno aprovado" : mediaNota >= 40 ? "Aluno de recuperação" : "Aluno reprovado";
+		int resto = (int) (numCarros % numPessoas);
+		String texto;
 		
-		System.out.println(saidaResultado + " " + mediaNota);
+		int confirm = JOptionPane.showConfirmDialog(null, "Deseja ver quantos carros deram por pessoa?");
+		if (confirm == 0) {
+			if (divisao > 1) {
+				texto = "Ficaram " + divisao + " carros por pessoa.";
+			} else {
+				texto = "Ficou " + divisao + " carro por pessoa.";
+			}
+			JOptionPane.showMessageDialog(null, texto);
+		}
+		
+		confirm = JOptionPane.showConfirmDialog(null, "Deseja ver quantos carros sobraram?");
+		if (confirm == 0) {
+			if (resto > 1) {
+				texto = "Sobraram " + resto + " carros.";
+			} else {
+				texto = "Sobrou " + resto + " carro.";
+			}
+			JOptionPane.showMessageDialog(null, texto);
+		}
 	}
 
 }
