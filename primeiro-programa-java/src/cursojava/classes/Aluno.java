@@ -133,12 +133,12 @@ public class Aluno {
 
 		if (media >= 50) {
 			if (media >= 70) {
-				return "aprovado";
+				return "Aluno aprovado";
 			} else {
-				return "em recuperação";
+				return "Aluno em recuperação";
 			}
 		} else {
-			return "reprovado";
+			return "Aluno reprovado";
 		}
 	}
 
