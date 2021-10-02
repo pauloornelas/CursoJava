@@ -1,5 +1,8 @@
 package cursojava.classes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*Está é a classe/objeto que representará o Aluno*/
 public class Aluno {
 
@@ -15,17 +18,19 @@ public class Aluno {
 	private String nomeEscola;
 	private String serieMatriculado;
 
-	private double nota1;
-	private double nota2;
-	private double nota3;
-	private double nota4;
+	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 
 	public Aluno() { /* Cria os dados na memória - sendo padrão do java */
 
 	}
 
-	/* SET é para setar os dados dos atributos */
-	/* GET é para retornar ou pegar os atributos */
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
+	}
 
 	public String getNome() {
 		return nome;
@@ -107,62 +112,73 @@ public class Aluno {
 		this.serieMatriculado = serieMatriculado;
 	}
 
-	public double getNota1() {
-		return nota1;
-	}
-
-	public void setNota1(double nota1) {
-		this.nota1 = nota1;
-	}
-
-	public double getNota2() {
-		return nota2;
-	}
-
-	public void setNota2(double nota2) {
-		this.nota2 = nota2;
-	}
-
-	public double getNota3() {
-		return nota3;
-	}
-
-	public void setNota3(double nota3) {
-		this.nota3 = nota3;
-	}
-
-	public double getNota4() {
-		return nota4;
-	}
-
-	public void setNota4(double nota4) {
-		this.nota4 = nota4;
-	}
-
 	public double getMediaNota() {
-		return (nota1 + nota2 + nota3 + nota4) / 4;
+		double somaNotas = 0.0;
+		for (Disciplina disciplina : disciplinas) {
+			somaNotas += disciplina.getNota();
+		}
+		return somaNotas / disciplinas.size();
 	}
 
 	public boolean getAlunoAprovadoBoolean() {
-		
+
 		double media = this.getMediaNota();
 		return media >= 70 ? true : false;
 
 	}
-	
-	public String  getAlunoAprovado() {
-		
+
+	public String getAlunoAprovado() {
+
 		double media = this.getMediaNota();
-		
-		if(media >= 50) {
-			if(media >= 70) {
+
+		if (media >= 50) {
+			if (media >= 70) {
 				return "aprovado";
-			}else {
-				return "recuperação";
+			} else {
+				return "em recuperação";
 			}
-		}else {
+		} else {
 			return "reprovado";
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "Aluno [nome=" + nome + ", idade=" + idade + ", dataNascimento=" + dataNascimento + ", rg=" + rg
+				+ ", cpf=" + cpf + ", nomeMae=" + nomeMae + ", nomePai=" + nomePai + ", dataMatricula=" + dataMatricula
+				+ ", nomeEscola=" + nomeEscola + ", serieMatriculado=" + serieMatriculado + ", disciplinas="
+				+ disciplinas + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Aluno other = (Aluno) obj;
+		if (cpf == null) {
+			if (other.cpf != null)
+				return false;
+		} else if (!cpf.equals(other.cpf))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		return true;
 	}
 
 }
