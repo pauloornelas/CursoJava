@@ -22,7 +22,7 @@ public class PrimeiraClasseJava {
 			/*----------------------------*/
 
 			aluno.setNome(JOptionPane.showInputDialog("Qual o nome do aluno " + (quant + 1) + " ?"));
-			/*aluno.setIdade(Integer.valueOf(JOptionPane.showInputDialog("Qual a idade do aluno " + aluno.getNome() + " ?")));
+			aluno.setIdade(Integer.valueOf(JOptionPane.showInputDialog("Qual a idade do aluno " + aluno.getNome() + " ?")));
 			aluno.setDataNascimento(JOptionPane.showInputDialog("Qual a data de nascimento do aluno " + aluno.getNome() + " ?"));
 			aluno.setRg(JOptionPane.showInputDialog("Qual o RG do aluno " + aluno.getNome() + " ?"));
 			aluno.setCpf(JOptionPane.showInputDialog("Qual é o CPF do aluno " + aluno.getNome() + " ?"));
@@ -30,7 +30,7 @@ public class PrimeiraClasseJava {
 			aluno.setNomePai(JOptionPane.showInputDialog("Qual o nome do pai do aluno " + aluno.getNome() + " ?"));
 			aluno.setDataMatricula(JOptionPane.showInputDialog("Qual foi a data da matrícula do aluno " + aluno.getNome() + " ?"));
 			aluno.setNomeEscola(JOptionPane.showInputDialog("Qual o nome da escola do aluno " + aluno.getNome() + " ?"));
-			aluno.setSerieMatriculado(JOptionPane.showInputDialog("Em qual serie o aluno " + aluno.getNome() + " está matriculado?"));*/
+			aluno.setSerieMatriculado(JOptionPane.showInputDialog("Em qual serie o aluno " + aluno.getNome() + " está matriculado?"));
 
 			for (int pos = 1; pos <= 10; pos++) {
 				if(pos > 4) {
