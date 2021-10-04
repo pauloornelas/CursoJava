@@ -17,9 +17,6 @@ public class PrimeiraClasseJava {
 
 		/*Instanciando as listas de objetos*/
 		List<Aluno> alunos = new ArrayList<Aluno>();
-		List<Aluno> alunosAprovados = new ArrayList<Aluno>();
-		List<Aluno> alunosRecuperacao = new ArrayList<Aluno>();
-		List<Aluno> alunosReprovados = new ArrayList<Aluno>();
 		
 		/*Instancia um map de listas do tipo "Aluno" */
 		HashMap<String, List<Aluno>> maps = new HashMap<String, List<Aluno>>();
