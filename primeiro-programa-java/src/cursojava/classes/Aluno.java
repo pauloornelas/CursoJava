@@ -6,16 +6,9 @@ import java.util.List;
 import cursojava.constantes.StatusAluno;
 
 /*Está é a classe/objeto que representará o Aluno*/
-public class Aluno {
+public class Aluno extends Pessoa{
 
 	/* Atributos do aluno */
-	private String nome;
-	private int idade;
-	private String dataNascimento;
-	private String rg;
-	private String cpf;
-	private String nomeMae;
-	private String nomePai;
 	private String dataMatricula;
 	private String nomeEscola;
 	private String serieMatriculado;
