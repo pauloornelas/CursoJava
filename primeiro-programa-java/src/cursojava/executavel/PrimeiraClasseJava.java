@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import cursojava.classes.Aluno;
 import cursojava.classes.Disciplina;
 import cursojava.classes.Secretario;
+import cursojava.classesauxiliares.FuncaoAutenticacao;
 import cursojava.constantes.StatusAluno;
 import cursojava.interfaces.PermitirAcesso;
 
@@ -22,7 +23,7 @@ public class PrimeiraClasseJava {
 		
 		PermitirAcesso permitirAcesso = new Secretario(login, senha);
 
-		if (permitirAcesso.autenticar()) {
+		if (new FuncaoAutenticacao(permitirAcesso).autenticar()) {
 
 			/* Instanciando as listas de objetos */
 			List<Aluno> alunos = new ArrayList<Aluno>();
