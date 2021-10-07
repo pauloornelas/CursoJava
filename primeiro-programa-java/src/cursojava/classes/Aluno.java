@@ -176,4 +176,9 @@ public class Aluno extends Pessoa{
 		return true;
 	}
 
+	@Override
+	public double salario() {
+		return 0;
+	}
+
 }

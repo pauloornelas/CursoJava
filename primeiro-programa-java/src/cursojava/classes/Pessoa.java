@@ -1,6 +1,6 @@
 package cursojava.classes;
 
-public class Pessoa {
+public abstract class Pessoa {
 	
 	protected String nome;
 	protected int idade;
@@ -9,6 +9,8 @@ public class Pessoa {
 	protected String cpf;
 	protected String nomeMae;
 	protected String nomePai;
+	
+	public abstract double salario();
 	
 	
 	public String getNome() {
@@ -52,6 +54,12 @@ public class Pessoa {
 	}
 	public void setNomePai(String nomePai) {
 		this.nomePai = nomePai;
+	}
+	
+	@Override
+	public String toString() {
+		return "Pessoa [nome=" + nome + ", idade=" + idade + ", dataNascimento=" + dataNascimento + ", rg=" + rg
+				+ ", cpf=" + cpf + ", nomeMae=" + nomeMae + ", nomePai=" + nomePai + "]";
 	}
 	
 	
