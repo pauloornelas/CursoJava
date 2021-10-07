@@ -19,6 +19,7 @@ public class PrimeiraClasseJava {
 	/* Main é um método auto executável em Java */
 	public static void main(String[] args) {
 
+		
 		String login = JOptionPane.showInputDialog("Qual o login de acesso?");
 		String senha = JOptionPane.showInputDialog("Qual a senha?");
 
