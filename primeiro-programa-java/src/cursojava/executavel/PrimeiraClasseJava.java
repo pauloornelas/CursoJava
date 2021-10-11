@@ -2,7 +2,6 @@ package cursojava.executavel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -10,10 +9,8 @@ import javax.swing.JOptionPane;
 import cursojava.classes.Aluno;
 import cursojava.classes.Diretor;
 import cursojava.classes.Disciplina;
-import cursojava.classes.Secretario;
 import cursojava.classesauxiliares.FuncaoAutenticacao;
 import cursojava.constantes.StatusAluno;
-import cursojava.interfaces.PermitirAcesso;
 
 public class PrimeiraClasseJava {
 
@@ -43,7 +40,7 @@ public class PrimeiraClasseJava {
 					/*----------------------------*/
 
 					aluno.setNome(JOptionPane.showInputDialog("Qual o nome do aluno " + (quant + 1) + " ?"));
-					aluno.setIdade(Integer.valueOf(JOptionPane.showInputDialog("Qual a idade do aluno " + aluno.getNome() + " ?")));
+					/*aluno.setIdade(Integer.valueOf(JOptionPane.showInputDialog("Qual a idade do aluno " + aluno.getNome() + " ?")));
 					aluno.setDataNascimento(JOptionPane.showInputDialog("Qual a data de nascimento do aluno " + aluno.getNome() + " ?"));
 					aluno.setRg(JOptionPane.showInputDialog("Qual o RG do aluno " + aluno.getNome() + " ?"));
 					aluno.setCpf(JOptionPane.showInputDialog("Qual é o CPF do aluno " + aluno.getNome() + " ?"));
@@ -51,7 +48,7 @@ public class PrimeiraClasseJava {
 					aluno.setNomePai(JOptionPane.showInputDialog("Qual o nome do pai do aluno " + aluno.getNome() + " ?"));
 					aluno.setDataMatricula(JOptionPane.showInputDialog("Qual foi a data da matrícula do aluno " + aluno.getNome() + " ?"));
 					aluno.setNomeEscola(JOptionPane.showInputDialog("Qual o nome da escola do aluno " + aluno.getNome() + " ?"));
-					aluno.setSerieMatriculado(JOptionPane.showInputDialog("Em qual serie o aluno " + aluno.getNome() + " está matriculado?"));
+					aluno.setSerieMatriculado(JOptionPane.showInputDialog("Em qual serie o aluno " + aluno.getNome() + " está matriculado?"));*/
 
 					for (int pos = 1; pos <= 10; pos++) {
 						if (pos > 4) {
@@ -66,7 +63,11 @@ public class PrimeiraClasseJava {
 								/*--------------------------------*/
 
 								disciplina.setDisciplina(JOptionPane.showInputDialog("Qual o nome da disciplina " + pos + " ?"));
-								disciplina.setNota(Double.parseDouble(JOptionPane.showInputDialog("Qual a nota da disciplina " + disciplina.getDisciplina() + " ?")));
+								double[] notas = new double[disciplina.getNotas().length];
+								for(int posi = 0 ; posi < disciplina.getNotas().length ; posi++) {
+									notas[posi] = Double.parseDouble(JOptionPane.showInputDialog("Qual a nota " + (posi+1) + " da disciplina " + disciplina.getDisciplina() + " ?"));
+								}
+								disciplina.setNotas(notas);
 								aluno.getDisciplinas().add(disciplina);
 							}
 						} else {
@@ -76,7 +77,11 @@ public class PrimeiraClasseJava {
 							/*--------------------------------*/
 
 							disciplina.setDisciplina(JOptionPane.showInputDialog("Qual o nome da disciplina " + pos + " ?"));
-							disciplina.setNota(Double.parseDouble(JOptionPane.showInputDialog("Qual a nota da disciplina " + disciplina.getDisciplina() + " ?")));
+							double[] notas = new double[disciplina.getNotas().length];
+							for(int posi = 0 ; posi < disciplina.getNotas().length ; posi++) {
+								notas[posi] = Double.parseDouble(JOptionPane.showInputDialog("Qual a nota " + (posi+1) + " da disciplina " + disciplina.getDisciplina() + " ?"));
+							}
+							disciplina.setNotas(notas);
 							aluno.getDisciplinas().add(disciplina);
 						}
 					}

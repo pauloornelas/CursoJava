@@ -1,9 +1,11 @@
 package cursojava.classes;
 
+import java.util.Arrays;
+
 public class Disciplina {
 
 	private String disciplina;
-	private double nota;
+	private double[] notas = new double[4];
 
 	public String getDisciplina() {
 		return disciplina;
@@ -13,12 +15,20 @@ public class Disciplina {
 		this.disciplina = disciplina;
 	}
 
-	public double getNota() {
-		return nota;
+	public double[] getNotas() {
+		return notas;
 	}
 
-	public void setNota(double nota) {
-		this.nota = nota;
+	public void setNotas(double[] notas) {
+		this.notas = notas;
+	}
+	
+	public double getMediaNotas() {
+		double media = 0.0;
+		for(int pos = 0 ; pos < notas.length ; pos++) {
+			media += notas[pos]; 
+		}
+		return (media/notas.length);
 	}
 
 	@Override
@@ -26,9 +36,7 @@ public class Disciplina {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((disciplina == null) ? 0 : disciplina.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(nota);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + Arrays.hashCode(notas);
 		return result;
 	}
 
@@ -46,14 +54,21 @@ public class Disciplina {
 				return false;
 		} else if (!disciplina.equals(other.disciplina))
 			return false;
-		if (Double.doubleToLongBits(nota) != Double.doubleToLongBits(other.nota))
+		if (!Arrays.equals(notas, other.notas))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Disciplina [disciplina=" + disciplina + ", nota=" + nota + "]";
+		return "Disciplina [disciplina=" + disciplina + ", notas=" + Arrays.toString(notas) + ", Média das notas="
+				+ getMediaNotas() + "]";
 	}
+
+	
+	
+	
+	
+	
 
 }
