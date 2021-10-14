@@ -23,6 +23,7 @@ public class PrimeiraClasseJava {
 
 		if (new FuncaoAutenticacao(new Diretor(login, senha)).autenticar()) {
 
+			telaEscola telaEscola = new telaEscola();
 			try {
 				/* Instanciando as listas de objetos */
 				List<Aluno> alunos = new ArrayList<Aluno>();
