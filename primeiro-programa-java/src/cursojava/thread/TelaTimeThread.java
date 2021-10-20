@@ -22,54 +22,16 @@ public class TelaTimeThread  extends JDialog{
 	
 	private JPanel jPanel = new JPanel(new GridBagLayout());  // Painel de componentes 
 	
-	private JLabel descricaoHora1 = new JLabel("Time thread 1!"); /*Instanciando componente do tipo comentário ou Label*/
+	private JLabel descricaoHora1 = new JLabel("Nome?"); /*Instanciando componente do tipo comentário ou Label*/
 	private JTextField mostraThread1 = new JTextField();		  /*Instancia componente do tipo caixa de texto*/
 	
-	private JLabel descricaoHora2 = new JLabel("Time thread 2!"); /*Instanciando componente do tipo comentário ou Label*/
+	private JLabel descricaoHora2 = new JLabel("E-mail?"); /*Instanciando componente do tipo comentário ou Label*/
 	private JTextField mostraThread2 = new JTextField();		  /*Instancia componente do tipo caixa de texto*/
 	
-	private JButton jbuButton1 = new JButton("Start");			  /*Instacia componente do tipo Botão com a descrição "Start"*/
+	private JButton jbuButton1 = new JButton("Add Lista");			  /*Instacia componente do tipo Botão com a descrição "Start"*/
 	private JButton jbuButton2 = new JButton("Stop");			  /*Instacia componente do tipo Botão com a descrição "Stop"*/
 	
-	private Runnable thread1 = new Runnable() {
-		
-		@Override
-		public void run() {
-			
-			while(true) {
-				mostraThread1.setText(new SimpleDateFormat("dd/MM/yyyy hh:mm.ss").format(Calendar.getInstance().getTime()));
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					
-					e.printStackTrace();
-				}
-			}
-		}
-	};
-	
-	private Runnable thread2 = new Runnable() {
-		
-		@Override
-		public void run() {
-			
-			while(true) {
-				
-				mostraThread2.setText(new SimpleDateFormat("dd/MM/yyyy hh:mm.ss").format(Calendar.getInstance().getTime()));
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					
-					e.printStackTrace();
-				}
-				
-			}
-			
-		}
-	};
-	
-	private Thread thread1Time;
-	private Thread thread2Time;
+	private ImplementacaoFilaThread fila = new ImplementacaoFilaThread();
 	
 	public TelaTimeThread() {
 		
@@ -108,28 +70,28 @@ public class TelaTimeThread  extends JDialog{
 		
 		gridBagConstraints.gridy ++;
 		jbuButton1.setPreferredSize(new Dimension(92,25));
-		mostraThread1.setEditable(false);						 // Indica que a caixa de testo não pode ser editada
 		jPanel.add(jbuButton1,gridBagConstraints);
 		
 		gridBagConstraints.gridx ++;
-		jbuButton2.setPreferredSize(new Dimension(92,25));
-		mostraThread2.setEditable(false);						 // Indica que a caixa de testo não pode ser editada
+		jbuButton2.setPreferredSize(new Dimension(92,25));			
 		jPanel.add(jbuButton2,gridBagConstraints);
 		
 		jbuButton1.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				thread1Time = new Thread(thread1);
-				thread1Time.start();
 				
-				thread2Time = new Thread(thread2);
-				thread2Time.start();
+				if(fila == null) {
+					fila = new ImplementacaoFilaThread();
+					fila.start();
+				}
 				
-				jbuButton1.setEnabled(false);
-				jbuButton2.setEnabled(true);
+				ObjetoFilaThread objeto = new ObjetoFilaThread();
 				
+				objeto.setNome(mostraThread1.getText());
+				objeto.setEmail(mostraThread2.getText());
+				
+				fila.add(objeto);
 				
 			}
 		});
@@ -140,20 +102,17 @@ public class TelaTimeThread  extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				thread1Time.stop();
-				thread2Time.stop();
-				
-				mostraThread1.setText("");
-				mostraThread2.setText("");
-				
-				jbuButton1.setEnabled(true);
-				jbuButton2.setEnabled(false);
+				if(fila != null) {
+					
+					fila.stop();
+					fila = null;
+					
+				}
 				
 			}
 		});
 		
-		jbuButton1.setEnabled(true);
-		jbuButton2.setEnabled(false);
+		fila.start();
 		
 		add(jPanel, BorderLayout.WEST);
 		/*Será sempre o último comando*/

@@ -5,14 +5,21 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import cursojava.classes.Aluno;
+import cursojava.executavel.PrimeiraClasseJava;
 
-public class telaEscola extends JDialog{
+
+public class CadastroNewAluno extends JDialog{
 
 	private JPanel jPanel = new JPanel(new GridBagLayout()); // Painel de componentes
 	
@@ -31,10 +38,13 @@ public class telaEscola extends JDialog{
 	private JTextField nomeMae = new JTextField();
 	private JLabel solicitaNomePai = new JLabel("Qual o nome do pai do aluno?");
 	private JTextField nomePai = new JTextField();
+	private JButton voltar = new JButton("Voltar");
+	private JButton salvar = new JButton("Salvar");
+	private boolean salvarCadastro = false;
 	
 	
 			
-	public telaEscola() {
+	public CadastroNewAluno() {
 
 		// Setando as configurações do painel
 		setTitle("Cadastro de alunos");  //Seta o titulo do painel que será exibido
@@ -46,6 +56,7 @@ public class telaEscola extends JDialog{
 		
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 0;
+		gridBagConstraints.gridwidth = 2; 
 		gridBagConstraints.insets = new Insets(5, 10, 5, 5);
 		gridBagConstraints.anchor = GridBagConstraints.WEST;
 		
@@ -103,6 +114,62 @@ public class telaEscola extends JDialog{
 		gridBagConstraints.gridy ++;
 		nomePai.setPreferredSize(new Dimension(200 , 25));
 		jPanel.add(nomePai , gridBagConstraints);
+		
+		gridBagConstraints.gridwidth = 1;
+		
+		gridBagConstraints.gridy ++;
+		salvar.setPreferredSize(new Dimension(92 , 25));
+		jPanel.add(salvar , gridBagConstraints);
+		
+		gridBagConstraints.gridx ++;
+		voltar.setPreferredSize(new Dimension(92 , 25));
+		jPanel.add(voltar , gridBagConstraints);
+		
+		salvar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				/*Aluno aluno = new Aluno();
+				
+				aluno.setNome(nome.getText());
+				aluno.setIdade(Integer.parseInt(idade.getText()));
+				aluno.setDataNascimento(dataNasc.getText());
+				aluno.setRg(rg.getText());
+				aluno.setCpf(cpf.getText());
+				aluno.setNomeMae(nomeMae.getText());
+				aluno.setNomePai(nomePai.getText());*/
+				
+				salvarCadastro = true;
+				
+				
+			}
+		});
+		
+		voltar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				if(salvarCadastro == true) {
+					TelaInicialEscola telaInicialEscola = new TelaInicialEscola();
+					setVisible(false);
+			        dispose();
+			        hide();
+				}else {
+					int verifica = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja fechar sem salvar os dados?");
+					if(verifica == 0) {
+						TelaInicialEscola telaInicialEscola = new TelaInicialEscola();
+						setVisible(false);
+				        dispose();
+				        hide();
+					}
+				}
+				
+			}
+		});
 		
 		
 		add(jPanel, BorderLayout.WEST);

@@ -6,7 +6,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import cursojava.TelasEscola.telaEscola;
+import cursojava.TelasEscola.CadastroNewAluno;
+import cursojava.TelasEscola.TelaInicialEscola;
 import cursojava.classes.Aluno;
 import cursojava.classes.Diretor;
 import cursojava.classes.Disciplina;
@@ -15,6 +16,9 @@ import cursojava.constantes.StatusAluno;
 
 public class PrimeiraClasseJava {
 
+	/* Instanciando as listas de objetos */
+	private static List<Aluno> alunos = new ArrayList<Aluno>();
+	
 	/* Main é um método auto executável em Java */
 	public static void main(String[] args) {
 
@@ -24,10 +28,8 @@ public class PrimeiraClasseJava {
 
 		if (new FuncaoAutenticacao(new Diretor(login, senha)).autenticar()) {
 
-			telaEscola telaEscola = new telaEscola();
+			TelaInicialEscola telaInicialEscola = new TelaInicialEscola();
 			try {
-				/* Instanciando as listas de objetos */
-				List<Aluno> alunos = new ArrayList<Aluno>();
 
 				/* Instancia um map de listas do tipo "Aluno" */
 				HashMap<String, List<Aluno>> maps = new HashMap<String, List<Aluno>>();
@@ -41,8 +43,8 @@ public class PrimeiraClasseJava {
 					Aluno aluno = new Aluno();
 					/*----------------------------*/
 
-					aluno.setNome(JOptionPane.showInputDialog("Qual o nome do aluno " + (quant + 1) + " ?"));
-					/*aluno.setIdade(Integer.valueOf(JOptionPane.showInputDialog("Qual a idade do aluno " + aluno.getNome() + " ?")));
+					/*aluno.setNome(JOptionPane.showInputDialog("Qual o nome do aluno " + (quant + 1) + " ?"));
+					aluno.setIdade(Integer.valueOf(JOptionPane.showInputDialog("Qual a idade do aluno " + aluno.getNome() + " ?")));
 					aluno.setDataNascimento(JOptionPane.showInputDialog("Qual a data de nascimento do aluno " + aluno.getNome() + " ?"));
 					aluno.setRg(JOptionPane.showInputDialog("Qual o RG do aluno " + aluno.getNome() + " ?"));
 					aluno.setCpf(JOptionPane.showInputDialog("Qual é o CPF do aluno " + aluno.getNome() + " ?"));
@@ -54,8 +56,7 @@ public class PrimeiraClasseJava {
 
 					for (int pos = 1; pos <= 10; pos++) {
 						if (pos > 4) {
-							int confirm = JOptionPane.showConfirmDialog(null,
-									"Deseja continuar acrescentando disciplinas?");
+							int confirm = JOptionPane.showConfirmDialog(null,"Deseja continuar acrescentando disciplinas?");
 							if (confirm != 0) {
 								break;
 							} else {
@@ -218,6 +219,13 @@ public class PrimeiraClasseJava {
 
 		}else {
 			JOptionPane.showMessageDialog(null, "Acesso negado, login ou senha incorreto!");
+		}
+	}
+	
+	public void addAlunoLista(Aluno aluno) {
+		alunos.add(aluno);
+		for(Aluno aluno1 : alunos) {
+			System.out.println(aluno1.getNome());
 		}
 	}
 }
